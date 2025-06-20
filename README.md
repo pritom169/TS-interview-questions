@@ -9,3 +9,7 @@ variables, arrays, classes, functions, all this stuff exists in TS.
 When developing an application it, we have to run the application and if there are any errors, we would
 have got it in runtime. Because TS provides type safety, we can catch the error much faster and we can
 get the error in compiling time.
+
+## Does TS improve our code out of the box?
+
+Not exactly. We need to enable strict compiler options (strict: true).
