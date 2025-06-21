@@ -163,4 +163,39 @@ function logMessage(message: string): void {
 }
 ```
 
-> One should not assign a `void` value to anything except `undefined`.
+> One should not assign a `void` value to anything except `undefined`. You can not do much with `void``
+
+## never
+
+Represents a value that never occurs.
+
+One should use never when
+
+- A function never returns (e.g., throws an error or has an infinite loop)
+- Used to catch exhaustiveness in switch statements
+
+```ts
+function throwError(message: string): never {
+  throw new Error(message);
+}
+
+function infiniteLoop(): never {
+  while (true) {}
+}
+```
+
+```ts
+type Shape = { kind: "circle" } | { kind: "square" };
+
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return 1;
+    case "square":
+      return 2;
+    default:
+      const _exhaustiveCheck: never = shape; // Type error if new type added
+      return _exhaustiveCheck;
+  }
+}
+```
