@@ -126,3 +126,41 @@ interface User {
 - Declaration merging is possible with `interface`, however it is not possible with `type`
 - `type` is used for complex types and utility types, whereas `interfaces` are good for Object oriented and
   class-based designs.
+
+## Union Type
+
+A union type is written using the pipe symbol (|)
+
+```ts
+let value: string | number;
+
+value = "hello";
+value = 42;
+value = true: // Error, as value only expecting string or number
+```
+
+### Type narrowing in Union
+
+Narrowing means refining a union type to a specific type at runtime using conditional checks.
+
+```ts
+function printId(id: string | number){
+    if (typeof id === "string) {
+        console.log("String ID: ", id.toUpperCase());
+    } else {
+        console.log("Numeric ID: ", )
+    }
+}
+```
+
+## Void
+
+Void represents the absence of value (especially for functions that don't return anything)
+
+```ts
+function logMessage(message: string): void {
+  console.log(message);
+}
+```
+
+> One should not assign a `void` value to anything except `undefined`.
