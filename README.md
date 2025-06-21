@@ -91,3 +91,38 @@ function greet(user) {
   return `Hello, ${user}`;
 }
 ```
+
+## Type in TS
+
+A `type` is a type-alias-a way to give a name to a specific type (primitive, union, intersection
+tuple, etc.).
+
+```ts
+type User = {
+  name: string;
+  age: number;
+};
+
+type ID = string | number;
+```
+
+- Creating complex types using union, intersection, and tuples
+- Representing primitive, object, or function types
+
+## Interface in TS
+
+An interface defines the structure of an object. It's more limited than type, but it's better suited for
+object-oriented design and can be extended multiple times.
+
+```ts
+interface User {
+  name: string;
+  age: number;
+}
+```
+
+## Difference between type and interface
+
+- Declaration merging is possible with `interface`, however it is not possible with `type`
+- `type` is used for complex types and utility types, whereas `interfaces` are good for Object oriented and
+  class-based designs.
