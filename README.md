@@ -13,3 +13,61 @@ get the error in compiling time.
 ## Does TS improve our code out of the box?
 
 Not exactly. We need to enable strict compiler options (strict: true).
+
+## How to define basic types inside typescript?
+
+### Variables
+
+```ts
+let name: string = "John";
+let age: number = 25;
+let isActive: boolean = true,
+let data: any = "anything"
+```
+
+### Arrays
+
+```ts
+let numbers: [] = [1, 2, 3];
+let names: Array<string> = ["Alice", "Bob"];
+let mixed: (string | number)[] = ["text", 42];
+```
+
+### Functions
+
+```ts
+function greet(name: string): string {
+  return `Hello, ${name}`;
+}
+
+const add = (a: number, b: number) => a + b;
+
+function welcome(name: string, age?: number): void {
+  console.log(`Welcome ${name}`);
+}
+```
+
+### Objects
+
+```ts
+let user: { name: string; age: number } = {
+  name: "John",
+  age: 30,
+};
+
+interface User {
+  name: string;
+  age: number;
+}
+
+let person: User = { name: "Jane", age: 25 };
+```
+
+### Special Types
+
+```ts
+let nothing: null = null;
+let notDefined: undefined = undefined;
+let anything: any = "flexible";
+let unknown: unknown = "safer than any";
+```
