@@ -71,3 +71,23 @@ let notDefined: undefined = undefined;
 let anything: any = "flexible";
 let unknown: unknown = "safer than any";
 ```
+
+## Difference between explicit and implicit styles in TS
+
+In explicit style, one manually declare types for varaibles, function parameters, return types, etc.
+
+```ts
+let name: string = "Alice";
+function greet(user: string): string {
+  return `Hello, ${user}`;
+}
+```
+
+In implicit style, one relies TS's type inference to determine the types for you.
+
+```ts
+let name = "Alice";
+function greet(user) {
+  return `Hello, ${user}`;
+}
+```
