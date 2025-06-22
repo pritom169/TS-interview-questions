@@ -574,3 +574,36 @@ function saveUser(input: UserInput): SavedUser {
   return savedUser;
 }
 ```
+
+## Literal Types in TS
+
+Literal types allow you to specifiy exact value that a variable can hold, not just the general type.
+
+### String Literal Type
+
+```ts
+// Instead of accepting any string
+let direction: string = "up"; // Can be any string
+
+// We use literal types for specific values only
+let movement: "up" | "down" | "left" | "right" = "up";
+// movement = "diagonal"; // Error: not allowed
+
+type Theme = "light" | "dark" | "auto";
+let userTheme: Theme = "dark"; // Only these 3 values allowed
+```
+
+## Template Literal Types
+
+```ts
+type EventName = `on${string}`;
+let event: EventName = "onClick"; // Valid
+let event2: EventName = "onSubmit"; // Valid
+// let event3: EventName = "click";   // ❌ Error: doesn't start with "on"
+
+// More complex patterns
+type CSSUnit = `${number}px` | `${number}%` | `${number}rem`;
+let width: CSSUnit = "100px"; // Valid
+let height: CSSUnit = "50%"; // Valid
+// let size: CSSUnit = "large"; // Error: doesn't match pattern
+```
