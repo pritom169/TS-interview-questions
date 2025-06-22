@@ -454,3 +454,31 @@ const publicData: PublicUser = {
   age: 30,
 };
 ```
+
+## Readonly in TS
+
+These utility type make properties immutable to prevent accidental modifications.
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  settings: {
+    theme: string;
+    notifications: boolean;
+  };
+}
+
+type ReadonlyUser = Readonly<User>;
+// Because of these all top level properties become raedonly
+
+const user: ReadonlyUser = {
+  id: 1,
+  name: "John",
+  settings: { theme: "dark", notifications: true },
+};
+
+// user.id = 2;              // Error: Cannot assign to 'id'
+// user.name = "Jane";       // Error: Cannot assign to 'name'
+user.settings.theme = "light"; // Works! Nested objects not affected
+```
