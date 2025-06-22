@@ -233,3 +233,32 @@ button.addEventListener("click", () => {
 
 > We use type assertions like `as HTMLInputELement` for specific elements. TS knows the structure of
 > HTML elements, hence it provides auto completion.
+
+## Classes in TS
+
+TS classes are similar to ES6 classes but with type annotation, access modifiers, and interfaces.
+
+```ts
+class Person {
+  private name: string;
+  public age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet(): string {
+    return `Hello, my name is ${this.name}`;
+  }
+}
+
+const user = new Person("Alice", 30);
+console.log(user.greet());
+```
+
+### Key features of classes
+
+- classes can have `public, private, and protected properties`
+- classes implements interfaces
+- it can use `readonly` and `static`
