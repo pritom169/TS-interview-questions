@@ -218,3 +218,18 @@ function printId(id: string | number){
     }
 }
 ```
+
+## DOM manipulation in TS
+
+In TS you use the DOM just like JS, but TS gives you the type safety and intellisense.
+
+```ts
+const button = document.getElementById("myButton") as HTMLButtonElement;
+
+button.addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+```
+
+> We use type assertions like `as HTMLInputELement` for specific elements. TS knows the structure of
+> HTML elements, hence it provides auto completion.
