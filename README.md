@@ -262,3 +262,36 @@ console.log(user.greet());
 - classes can have `public, private, and protected properties`
 - classes implements interfaces
 - it can use `readonly` and `static`
+
+## Enums in TS
+
+Enums are a way to define a set of named constants
+
+### Numeric Enum
+
+```ts
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+let move: Direction = Direction.up;
+```
+
+### String Enum
+
+```ts
+enum Status {
+  Success = "SUCCESS",
+  Error = "ERROR",
+}
+
+let result: Status = Status.Success;
+```
+
+### Use cases of enums
+
+- When readable and safe constant values are needed
+- You need a specific set of allowed options
