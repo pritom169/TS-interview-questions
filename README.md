@@ -482,3 +482,95 @@ const user: ReadonlyUser = {
 // user.name = "Jane";       // Error: Cannot assign to 'name'
 user.settings.theme = "light"; // Works! Nested objects not affected
 ```
+
+## Partial in TS
+
+Partial makes all properties of a type optional by adding ? to each property.
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+}
+
+type PartialUser = Partial<User>;
+// Result: {
+//     id?: number;
+//     name?: string;
+//     email?: string;
+//     age?: number;
+// }
+
+const user: PartialUser = {
+  name: "John",
+  // Other properties are optional
+};
+```
+
+Some real world use cases
+
+```ts
+function updateUser(id: number, updates: Partial<User>) {
+  // Can update any subset of user properties
+  return { ...existingUser, ...updates };
+}
+
+updateUser(1, { name: "Jane" }); // Only name
+updateUser(1, { email: "new@email.com" }); // Only email
+updateUser(1, { name: "Bob", age: 25 }); // Multiple properties
+```
+
+## Required in TS
+
+Required makes all properties of a type mandatory by removing the ? optional modifier.
+
+```ts
+interface User {
+  id?: number;
+  name?: string;
+  email?: string;
+  age?: number;
+}
+
+type RequiredUser = Required<User>;
+// Result: {
+//     id: number;        // ? removed
+//     name: string;      // ? removed
+//     email: string;     // ? removed
+//     age: number;       // ? removed
+// }
+
+const user: RequiredUser = {
+  id: 1,
+  name: "John",
+  email: "john@example.com",
+  age: 30,
+  // All properties are now mandatory
+};
+```
+
+Some real world use cases
+
+```ts
+interface UserInput {
+  id?: number; // Optional for creation
+  name?: string;
+  email?: string;
+  createdAt?: Date;
+}
+
+// After saving to database, all fields should exist
+type SavedUser = Required<UserInput>;
+
+function saveUser(input: UserInput): SavedUser {
+  const savedUser: SavedUser = {
+    id: generateId(),
+    name: input.name || "Unknown",
+    email: input.email || "",
+    createdAt: new Date(),
+  };
+  return savedUser;
+}
+```
