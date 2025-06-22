@@ -127,32 +127,6 @@ interface User {
 - `type` is used for complex types and utility types, whereas `interfaces` are good for Object oriented and
   class-based designs.
 
-## Union Type
-
-A union type is written using the pipe symbol (|)
-
-```ts
-let value: string | number;
-
-value = "hello";
-value = 42;
-value = true: // Error, as value only expecting string or number
-```
-
-### Type narrowing in Union
-
-Narrowing means refining a union type to a specific type at runtime using conditional checks.
-
-```ts
-function printId(id: string | number){
-    if (typeof id === "string) {
-        console.log("String ID: ", id.toUpperCase());
-    } else {
-        console.log("Numeric ID: ", )
-    }
-}
-```
-
 ## Void
 
 Void represents the absence of value (especially for functions that don't return anything)
@@ -216,3 +190,31 @@ value.doesNotExist();
 ```
 
 > Any defeats the purpose of TS's safety. One needs to use `unknown` if safety with flexibility in needed.
+
+## Unknown
+
+`Unknown` is like `any`, but type-safe. One must `narrow` it before one can use it.
+
+When dealing with external input (e.g. JSON, user input) and want type safety, then one can use unknown.
+
+```ts
+let value: unknown = "hello";
+
+if (typeof value === "string") {
+  console.log(value.toUpperCase());
+}
+```
+
+### Type narrowing in Union
+
+Narrowing means refining a union type to a specific type at runtime using conditional checks.
+
+```ts
+function printId(id: string | number){
+    if (typeof id === "string) {
+        console.log("String ID: ", id.toUpperCase());
+    } else {
+        console.log("Numeric ID: ", )
+    }
+}
+```
