@@ -295,3 +295,35 @@ let result: Status = Status.Success;
 
 - When readable and safe constant values are needed
 - You need a specific set of allowed options
+
+## Generics in TS
+
+Generic allow you to create `reusable, type-safe components or functions` that work with any data type.
+
+### Generic Function
+
+```ts
+function identity<T>(value: T): T {
+  return value;
+}
+
+let result = identity<number>(42); // Identitiy function will return an integer
+let word = identity<string>("hello"); // Word function will return a string
+```
+
+### Generic Interface
+
+```ts
+interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+}
+
+const response: ApiResponse<string> = {
+  data: "User created",
+  success: true,
+};
+```
+
+> We use generic to increase the reusability of the code as it workd with multiple types. In adverently,
+> it also provides type safety.
