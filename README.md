@@ -199,3 +199,20 @@ function getArea(shape: Shape) {
   }
 }
 ```
+
+## any
+
+Any disables type checking for a variable. One can assign anything to it, and it can be asssigned to anything.
+
+Any should be avoided if possible. It can be used only you are migrating from JS to TS and you can not find
+a type yet.
+
+```ts
+let value: any = 5;
+value = "hello";
+value = { x: true };
+
+value.doesNotExist();
+```
+
+> Any defeats the purpose of TS's safety. One needs to use `unknown` if safety with flexibility in needed.
