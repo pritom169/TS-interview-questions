@@ -395,3 +395,62 @@ interface Config {
 
 const cfg: Config = { port: 8080, host: "localhost", mode: "dev" };
 ```
+
+## RecordType in TS
+
+Record is a utility type that creates an object type with specific key-value type constraints.
+
+```ts
+type Scores = Record<string, number>;
+const gameScores: Scores = {
+  player1: 100,
+  player2: 85,
+  player3: 92,
+};
+
+// Record with specific string literal keys
+type Status = Record<"pending" | "approved" | "rejected", "boolean">;
+const taskStatus: Status = {
+  pending: true,
+  approved: false,
+  rejected: false,
+};
+```
+
+> Record type enforces consisted value types accross all properties.
+
+## Pick and Omit in TS
+
+These utility types create new types by selecting or excluding properties from existing types.
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  age: number;
+}
+
+type UserSummary = Pick<User, "id" | "name">;
+
+const summary: UserSummary = {
+  id: 1,
+  name: "John",
+};
+```
+
+Omit is complete opposite of Pick. When Omit is performed, a particular
+property will be omitted.
+
+```ts
+// we need to omit password for public user
+type publicUser = Omit<User, "password">;
+
+const publicData: PublicUser = {
+  id: 1,
+  name: "John",
+  email: "john@example.com",
+  age: 30,
+};
+```
