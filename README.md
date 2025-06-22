@@ -339,4 +339,38 @@ const [name, age] = person;
 ```
 
 > Tuples are useful in inforcing specific types at specific positions. It is also quite handy
-> in returning multiple values
+> in returning multiple values.
+
+## Optional Properties in TS
+
+In TS you put one "?" mark after `property name` or `type alias`:
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional property has been declard
+}
+```
+
+Here, `email` may be present or undefined
+
+```ts
+const u1: User = { id: 1, name: "Alice", email: "alice@example.com" };
+const u2: User = { id: 2, name: "Bob" };
+```
+
+### How does Optional works underneath
+
+- At compile time, TS knows that `user.email` might be `undefined`.
+- When it has be transpiled into JS we might find the JS code is `email: string | undefined`.
+
+```ts
+function greet(user: User) {
+  console.log(`Hi, ${user.name}`);
+
+  if (user.email) {
+    console.log(`Email: ${user.email.toLowerCase()}`);
+  }
+}
+```
