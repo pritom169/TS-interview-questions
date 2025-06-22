@@ -374,3 +374,24 @@ function greet(user: User) {
   }
 }
 ```
+
+## Dynamic keys (Index Signatures) in TS
+
+When you do not know all the property names in advance, you can use an `index signatures` or utlity types.
+
+```ts
+interface StringMap {
+  [key: string]: string;
+}
+```
+
+In the above mentioned example, string key is allowed, and value must be a `string`.
+
+```ts
+interface Config {
+  port: number;
+  [key: string]: string | number;
+}
+
+const cfg: Config = { port: 8080, host: "localhost", mode: "dev" };
+```
