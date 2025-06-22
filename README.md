@@ -327,3 +327,16 @@ const response: ApiResponse<string> = {
 
 > We use generic to increase the reusability of the code as it workd with multiple types. In adverently,
 > it also provides type safety.
+
+## Tuples in TS
+
+A tuple is a `fixed length array` with `typed-elements`.
+
+```ts
+let person: [string, number] = ["Alice", 30];
+
+const [name, age] = person;
+```
+
+> Tuples are useful in inforcing specific types at specific positions. It is also quite handy
+> in returning multiple values
