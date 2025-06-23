@@ -639,3 +639,27 @@ The easiest way to transpilte TS to JS by using TypeScript command line tool. An
 
 - `src/main.ts` is the file I want to transpile
 - `build.js`is the file where all the transpiled code will be stored
+
+## d.ts file in TS
+
+A `.d.ts` file in TypeScript is a declaration file. Its purpose is to describe the shape of JavaScript code to the TypeScript compiler — essentially acting as a type definition without containing any actual implementation.
+
+### Purpose of .d.ts Files
+
+- Provide type information for existing JS code (like libraries)
+- Enable IDE support like IntelliSense, autocompletion, and type checking
+- Allow integration with untyped or third-party JS libraries
+
+```ts
+function greet(name) {
+  return `Hello, ${name}`;
+}
+```
+
+One can create a `.d.ts`file to declare types for it:
+
+```ts
+declare function greet(name: string): string;
+```
+
+Now the TS knows about the greet function, even though it's implemented in plain JS.
