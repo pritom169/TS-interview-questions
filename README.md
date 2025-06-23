@@ -691,3 +691,62 @@ const msg1 = greet("John"); // string: "Hello, John!"
 const msg2 = greet(25); // string: "You are 25 years old!"
 const msg3 = greet("Alice", 30); // string: "Hello, Alice! You are 30 years old."
 ```
+
+## Extends TS
+
+### 1. In Classes and Interfaces
+
+Used to indicate inheritance or extension
+
+```ts
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+// Means the dog must have all the properties from Animal + it's own
+```
+
+### 2. In Conditional Types
+
+The infer keyword is used within conditional types to "infer" or extract a type from another type.
+
+```ts
+type IsString<T> = T extends string ? true : false;
+
+type Test1 = IsString<string>; // true
+type Test2 = IsString<Number>; // false
+type Test3 = IsString<"hello">; // true (string literal extends string)
+```
+
+#### Real-world Conditional Type Examples
+
+```ts
+interface User {
+  id: number;
+  name: string;
+}
+interface Post {
+  id: number;
+  title: string;
+}
+interface Comment {
+  id: number;
+  text: string;
+}
+
+type ApiResponse<T> = T extends "user"
+  ? User
+  : T extends "post"
+  ? Post
+  : T extends "comment"
+  ? Comment
+  : unknown;
+
+// TypeScript knows exact return types
+type UserResponse = ApiResponse<"user">; // User
+type PostResponse = ApiResponse<"post">; // Post
+type UnknownResponse = ApiResponse<"other">; // unknown
+```
