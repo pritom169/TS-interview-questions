@@ -599,7 +599,7 @@ let userTheme: Theme = "dark"; // Only these 3 values allowed
 type EventName = `on${string}`;
 let event: EventName = "onClick"; // Valid
 let event2: EventName = "onSubmit"; // Valid
-// let event3: EventName = "click";   // ❌ Error: doesn't start with "on"
+// let event3: EventName = "click";   // Error: doesn't start with "on"
 
 // More complex patterns
 type CSSUnit = `${number}px` | `${number}%` | `${number}rem`;
@@ -663,3 +663,31 @@ declare function greet(name: string): string;
 ```
 
 Now the TS knows about the greet function, even though it's implemented in plain JS.
+
+## Function Overloading in TS
+
+Function overloading allows you to define multiple type signatures for the same function,
+enabling different parameter combinaitons while maintaining type safety.
+
+```ts
+// Overload signatures (declarations only)
+function greet(name: string): string;
+function greet(age: number): string;
+function greet(name: string, age: number): string;
+
+// Implementation signature (This part of the code must handle all the overloads)
+function greet(nameOrAge: string | number, age?: number): string {
+  if (typeof nameOrAge === `string` && age === undefined) {
+    return `Hello, ${nameOrAge}`;
+  } else if (typeof nameOrAge === `number` && age === undefined) {
+    return `You are ${nameOrAge} years old`;
+  } else if (typeof nameOrAge === `number` && age === undefined) {
+    return `Hello, ${nameOrAge}! You are ${age} years old`;
+  }
+  throw new Error("Invalid arguments!");
+}
+
+const msg1 = greet("John"); // string: "Hello, John!"
+const msg2 = greet(25); // string: "You are 25 years old!"
+const msg3 = greet("Alice", 30); // string: "Hello, Alice! You are 30 years old."
+```
