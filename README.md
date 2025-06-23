@@ -607,3 +607,24 @@ let width: CSSUnit = "100px"; // Valid
 let height: CSSUnit = "50%"; // Valid
 // let size: CSSUnit = "large"; // Error: doesn't match pattern
 ```
+
+## What does TS as a language consists of?
+
+TS has three main components:
+
+1. The TS language itself
+2. The TS compiler
+3. The TS language service
+
+### 1. The TS language
+
+The language consists of syntax, keywords, and type annotations.
+
+### 2. The TS Compiler (TSC)
+
+The TSC converts instructions written in TS to it JS equivalent
+
+### 3. The TS language Service
+
+An additional layer of editor-like applications, such as statement completion, signature help, code formatting,
+and colorization, among other things.
