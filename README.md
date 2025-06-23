@@ -628,3 +628,14 @@ The TSC converts instructions written in TS to it JS equivalent
 
 An additional layer of editor-like applications, such as statement completion, signature help, code formatting,
 and colorization, among other things.
+
+## How to transpile TS to JS
+
+The easiest way to transpilte TS to JS by using TypeScript command line tool. An example command has been added.
+
+```zsh
+./node_modules/typescript/bin/tsc src/main.ts --outfile build.js
+```
+
+- `src/main.ts` is the file I want to transpile
+- `build.js`is the file where all the transpiled code will be stored
