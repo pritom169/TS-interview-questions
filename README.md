@@ -750,3 +750,52 @@ type UserResponse = ApiResponse<"user">; // User
 type PostResponse = ApiResponse<"post">; // Post
 type UnknownResponse = ApiResponse<"other">; // unknown
 ```
+
+## Infer in TS
+
+The `infer` keyword is used within conditional types (means within extend) to `"infer" or extract`
+a type from another type.
+
+```ts
+type CustomReturnType<T> = T extends (....args: any[]) => infer R ? R : any;
+```
+
+Let's go through this line of code one by one.
+
+1. `(....args: any[])` It is looking for all the arguments inside the function
+2. `infer R` Tries to infer the return types in TS
+3. If it can infer R, it will return R else it will return any
+
+```ts
+type Foo = () => number;
+type Bar = CustomReturnType<Foo>; // number
+```
+
+### infer the first parameter of a funciton
+
+```ts
+type GetFirstArgumentOfAnyFunction<T> = T extends (
+  first: infer FirstArgument,
+  ...args: any[]
+) => any
+  ? FirstArgument
+  : never;
+
+type t = GetFirstArgumentOfAnyFunction<(name: string, age: number) => void>; // string has been assigned to T
+```
+
+### Infer the datatype inside Promise
+
+```ts
+type PromiseReturnValue<T> = T extends Promise<infer Return> ? Return : T;
+
+type t = PromiseReturnValue<Promise<string>>;
+```
+
+### Infer Datatype for Array
+
+```ts
+type ArrayType<T> = T extends (infer Item)[] ? Item : T;
+
+type t = ArrayType<[string, number]>;
+```
